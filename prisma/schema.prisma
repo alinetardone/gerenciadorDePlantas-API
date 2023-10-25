@@ -9,3 +9,46 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Usuarios {
+  id    String @id @unique @default(uuid())
+  nome  String
+  email String
+  senha String
+  cargo String
+
+  plantas Plantas[]
+}
+
+model Plantas {
+  id           String  @id @unique @default(uuid())
+  usuarioId    String
+  imagemId     String
+  nome         String
+  especie      String
+  localizacao  String
+  diaDeRegar   String
+  fertilizante Boolean @default(false)
+  luz          Boolean @default(false)
+
+  usuario Usuarios?       @relation(fields: [usuarioId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  imagem  ImagensPlantas? @relation(fields: [imagemId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  regas   Regas[]
+}
+
+model ImagensPlantas {
+  id     String @id @unique @default(uuid())
+  imagem String
+
+  plantas Plantas[]
+}
+
+model Regas {
+  id         String    @id @unique @default(uuid())
+  plantaId   String
+  regado     Boolean   @default(false)
+  dataRegou  DateTime?
+  quantidade Int?
+
+  planta Plantas? @relation(fields: [plantaId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}
