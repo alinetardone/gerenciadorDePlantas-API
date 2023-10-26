@@ -1,3 +1,7 @@
+export interface ILogin {
+    email?: string;
+    senha?: string;
+}
 export interface IUsuarios {
     id: string,
     nome: string,
@@ -16,9 +20,11 @@ export interface CreateUsuarioProps {
 export interface UpdateUsuarioProps {
     id: string,
     nome?: string,
-    email: string,
+    email?: string,
     senha?: string,
     cargo?: string,
+    data?: JSON,
+
 }
 
 export interface DeleteUsuarioProps {
