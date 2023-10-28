@@ -9,7 +9,7 @@ export interface CreateImagemPlantaProps {
 
 export interface UpdateImagemPlantaProps {
     id: string,
-    imagem?: string,
+    imagem: string,
 }
 
 export interface DeleteImagemPlantaProps {

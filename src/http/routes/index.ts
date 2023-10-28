@@ -1,12 +1,13 @@
 import { Request, Response, Router } from "express";
 import { usuariosRoutes } from "../../app/modules/usuarios/routes/usuarios.routes";
 import { plantasRoutes } from "../../app/modules/plantas/routes/plantas.routes";
+import { imagensRoutes } from "../../app/modules/imagensPlantas/routes/imagens.routes";
 
 const routes = Router();
 
 routes.use("/usuarios", usuariosRoutes)
 routes.use("/plantas", plantasRoutes)
-// routes.use("/imagens", imagensRoutes)
+routes.use("/imagens", imagensRoutes)
 
 
 routes.get('/', (_req: Request, res: Response) => {
