@@ -6,8 +6,8 @@ export interface IPlantas {
     especie: string,
     localizacao: string,
     diaDeRegar: string,
-    fertilizante: Boolean,
-    luz: Boolean
+    fertilizante: boolean,
+    luz: boolean
 }
 
 export interface CreatePlantaProps {
@@ -17,18 +17,19 @@ export interface CreatePlantaProps {
     especie: string,
     localizacao: string,
     diaDeRegar: string,
-    fertilizante: Boolean,
-    luz: Boolean
+    fertilizante: boolean,
+    luz: boolean
 }
 
 export interface UpdatePlantaProps {
-    id: string,
+    id?: string,
     nome?: string,
     especie?: string,
     localizacao?: string,
     diaDeRegar?: string,
-    fertilizante?: Boolean,
-    luz?: Boolean
+    fertilizante?: boolean,
+    luz?: boolean,
+    data?: object,
 }
 
 export interface DeletePlantaProps {

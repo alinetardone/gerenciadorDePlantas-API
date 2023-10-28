@@ -3,13 +3,13 @@ import { Router } from "express";
 import { UsuarioController } from "../controller/usuariosController";
 
 const usuarioController = new UsuarioController();
-const userRoutes = Router();
+const usuariosRoutes = Router();
 
-userRoutes.post("/", usuarioController.create)
-userRoutes.post("/login", usuarioController.login)
-userRoutes.put("/:id", usuarioController.update)
-userRoutes.delete("/:id", usuarioController.delete)
-userRoutes.get("/:id", usuarioController.buscaUsuario)
-userRoutes.get("/:cargo/all", usuarioController.buscaTodosOsUsuarios)
+usuariosRoutes.post("/", usuarioController.create)
+usuariosRoutes.post("/login", usuarioController.login)
+usuariosRoutes.put("/:id", usuarioController.update)
+usuariosRoutes.delete("/:id", usuarioController.delete)
+usuariosRoutes.get("/:id", usuarioController.buscaUsuario)
+usuariosRoutes.get("/:cargo/all", usuarioController.buscaTodosOsUsuarios)
 
-export { userRoutes };
+export { usuariosRoutes };
