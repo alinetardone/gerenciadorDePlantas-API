@@ -45,7 +45,7 @@ export class ImagensUseCase {
         return imagemEncontrada
     }
 
-    async buscaImagemPorPlantaId(plantaId: string): Promise<Plantas> {
+    async buscaImagemPorPlantaId(plantaId: string): Promise<string> {
 
         const imagemEncontrada = await buscaImagemPorPlantaId(plantaId)
 

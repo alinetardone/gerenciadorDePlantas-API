@@ -11,7 +11,7 @@ imagensRoutes.put("/:id", imagemController.update)
 imagensRoutes.delete("/:id", imagemController.delete)
 imagensRoutes.get("/all", imagemController.buscaTodasAsImagens)
 imagensRoutes.get("/:id", imagemController.buscaImagem)
-imagensRoutes.get("/:plantaId", imagemController.buscaImagemPorPlantaId)
+imagensRoutes.get("/planta/:plantaId", imagemController.buscaImagemPorPlantaId)
 
 
 export { imagensRoutes };

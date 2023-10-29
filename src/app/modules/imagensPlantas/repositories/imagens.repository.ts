@@ -35,16 +35,20 @@ export async function buscaImagemPorId(id: string): Promise<ImagensPlantas | nul
     });
 }
 
-export async function buscaImagemPorPlantaId(plantaId: string): Promise<Plantas | null> {
+export async function buscaImagemPorPlantaId(plantaId: string): Promise<string | null> {
     const planta = await prisma.plantas.findUnique({
-        where: {
-            id: plantaId,
-            imagem: {}
-        }
+        where: { id: plantaId },
+        include: { imagem: true },
     });
 
-    return planta
+    // Verifica se a planta foi encontrada
+    if (planta) {
+        return planta.imagem?.imagem || null;
+    } else {
+        return null; // Retorna nulo se a planta não foi encontrada
+    }
 }
+    
 
 export async function buscaTodasAsImagens(): Promise<ImagensPlantas[] | null> {
     const imagens = await prisma.imagensPlantas.findMany();
