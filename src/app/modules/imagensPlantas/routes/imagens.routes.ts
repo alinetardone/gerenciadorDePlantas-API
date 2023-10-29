@@ -9,9 +9,9 @@ const imagensRoutes = Router();
 imagensRoutes.post("/", multerMiddleware.single('imagem'), imagemController.create)
 imagensRoutes.put("/:id", imagemController.update)
 imagensRoutes.delete("/:id", imagemController.delete)
+imagensRoutes.get("/all", imagemController.buscaTodasAsImagens)
 imagensRoutes.get("/:id", imagemController.buscaImagem)
 imagensRoutes.get("/:plantaId", imagemController.buscaImagemPorPlantaId)
-imagensRoutes.get("/all", imagemController.buscaTodasAsImagens)
 
 
 export { imagensRoutes };

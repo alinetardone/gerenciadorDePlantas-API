@@ -86,6 +86,8 @@ export class ImagensController {
 
         const imagensUseCases = new ImagensUseCase()
 
+        console.log("passei pro aqui")
+
         const usuarios = await imagensUseCases.buscaTodasAsImagens()
 
         return res.status(200).json(usuarios)
