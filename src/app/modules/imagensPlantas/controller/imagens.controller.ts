@@ -1,19 +1,22 @@
 import { Request, Response } from "express";
 import { ImagensUseCase } from "../useCases/imagensUseCases";
+import { imageToBase64 } from "../../../../utils/imageToBase64";
 
 export class ImagensController {
 
     async create(req: Request, res: Response) {
 
-        const { data } = req.body;
+        const imagem: Express.Multer.File | undefined = req.file;
 
-        if (!data) {
+        if (!imagem) {
             throw new Error("Parâmetros inválidos.")
         }
 
         const imagemUseCases = new ImagensUseCase();
 
-        const resultado = await imagemUseCases.create(data);
+        const logoBase64 = await imageToBase64(imagem);
+
+        const resultado = await imagemUseCases.create(logoBase64);
 
         return res.status(201).json(resultado);
     }

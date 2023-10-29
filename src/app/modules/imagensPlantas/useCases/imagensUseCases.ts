@@ -5,9 +5,9 @@ import { atualizaImagem, buscaImagemPorId, buscaImagemPorPlantaId, buscaTodasAsI
 
 export class ImagensUseCase {
 
-    async create(data: CreateImagemPlantaProps): Promise<ImagensPlantas> {
+    async create(logoBase64: string): Promise<ImagensPlantas> {
 
-        const imagemSalva = await criaImagem(data)
+        const imagemSalva = await criaImagem(logoBase64)
 
         return imagemSalva
     }

@@ -2,8 +2,10 @@ import { ImagensPlantas, Plantas } from "@prisma/client";
 import { prisma } from "../../../../database/prisma/client";
 import { CreateImagemPlantaProps, UpdateImagemPlantaProps } from "../../../dtos/imagensPlantasDTO";
 
-export async function criaImagem(data: CreateImagemPlantaProps): Promise<ImagensPlantas> {
-    return await prisma.imagensPlantas.create({ data });
+export async function criaImagem(logoBase64: string): Promise<ImagensPlantas> {
+    return await prisma.imagensPlantas.create({ data: {
+        imagem: logoBase64
+    } });
 }
 
 export async function atualizaImagem({ id, imagem }: UpdateImagemPlantaProps): Promise<ImagensPlantas> {

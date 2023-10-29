@@ -4,7 +4,7 @@ export interface IImagensPlantas {
 }
 
 export interface CreateImagemPlantaProps {
-    imagem: string,
+    logoBase64: string,
 }
 
 export interface UpdateImagemPlantaProps {
