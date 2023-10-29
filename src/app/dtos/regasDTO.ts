@@ -1,24 +1,25 @@
 export interface IRegas {
     id: string,
     plantaId: string,
-    regado: Boolean,
+    regado: boolean,
     dataRegou: Date,
-    quantidade: Number
+    quantidade: number
 }
 
 export interface CreateRegaProps {
     plantaId: string,
-    regado: Boolean,
+    regado: boolean,
     dataRegou: Date,
-    quantidade: Number
+    quantidade: number
 }
 
 export interface UpdateRegaProps {
-    id: string,
+    id?: string,
     plantaId?: string,
-    regado?: Boolean,
+    regado?: boolean,
     dataRegou?: Date,
-    quantidade?: Number
+    quantidade?: number,
+    data?: Object,
 }
 
 export interface DeleteRegaProps {
