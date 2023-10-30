@@ -4,5 +4,6 @@ const env = config.parsed ?? process.env
 
 module.exports = {
     SERVER_PORT: env.PORT,
-    DATABASE_URL: env.DATABASE_URL
+    DATABASE_URL: env.DATABASE_URL,
+    JWT_SECRET: env.JWT_SECRET
 }
