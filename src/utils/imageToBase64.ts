@@ -11,10 +11,10 @@ export async function imageToBase64(file: Express.Multer.File): Promise<string> 
     const imageBuffer = Buffer.from(base64String, 'base64');
 
     // Redimensiona a imagem para 200x200 pixels
-    // const resizedImageBuffer = await sharp(imageBuffer).resize(200, 200).toBuffer();
+    const resizedImageBuffer = await sharp(imageBuffer).resize(200, 200).toBuffer();
 
     // Converte o Buffer redimensionado de volta para uma string de base64
-    const resizedBase64String = imageBuffer.toString('base64');
+    const resizedBase64String = resizedImageBuffer.toString('base64');
 
     // Exclui o arquivo após transformá-lo em base64
     await fs.promises.unlink(file.path);
