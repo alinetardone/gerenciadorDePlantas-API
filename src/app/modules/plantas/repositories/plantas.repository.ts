@@ -6,10 +6,10 @@ export async function criaPlanta(data: CreatePlantaProps): Promise<Plantas> {
     return await prisma.plantas.create({ data });
 }
 
-export async function atualizaPlanta(data: UpdatePlantaProps): Promise<Plantas> {
+export async function atualizaPlanta(id: string, data: UpdatePlantaProps): Promise<Plantas> {
     return await prisma.plantas.update({
         where: {
-            id: data.id,
+            id,
         },
         data
     })

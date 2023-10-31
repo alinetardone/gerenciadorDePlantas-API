@@ -19,9 +19,9 @@ export class PlantasUseCase {
         return plantaCriada
     }
 
-    async update({id, data }: UpdatePlantaProps): Promise<Plantas> {
+    async update({ id, data }: UpdatePlantaProps): Promise<Plantas> {
 
-        if(!data || !id) throw new Error
+        if (!data || !id) throw new Error
 
         const plantaEncontrada = await buscaPlantaPorId(id)
 
@@ -30,7 +30,7 @@ export class PlantasUseCase {
             throw new AppError("Planta não encontrada", 404)
         }
 
-        const plantaAtualizada = await atualizaPlanta(data)
+        const plantaAtualizada = await atualizaPlanta(id, data)
 
         return plantaAtualizada
     }
