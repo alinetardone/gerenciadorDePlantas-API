@@ -4,19 +4,49 @@ import { PlantasUseCase } from "../useCases/plantasUseCases";
 export class PlantasController {
 
     async create(req: Request, res: Response) {
-
         const { data } = req.body;
+        const errors = [];
 
         if (!data) {
-            throw new Error("Parâmetros inválidos.")
+            errors.push("O campo 'data' é obrigatório.");
+        } else {
+            if (!data.imagem) {
+                errors.push("O campo 'imagem' é obrigatório.");
+            }
+            if (!data.nome) {
+                errors.push("O campo 'nome' é obrigatório.");
+            }
+            if (!data.especie) {
+                errors.push("O campo 'especie' é obrigatório.");
+            }
+            if (!data.localizacao) {
+                errors.push("O campo 'localizacao' é obrigatório.");
+            }
+            if (!data.diaDeRegar) {
+                errors.push("O campo 'dia de regar' é obrigatório.");
+            }
+            if (data.fertilizante === undefined) {
+                errors.push("O campo 'fertilizante' é obrigatório.");
+            }
+            if (data.luz === undefined) {
+                errors.push("O campo 'luz' é obrigatório.");
+            }
+        }
+
+        if (errors.length > 0) {
+            return res.status(400).json({ errors });
         }
 
         const plantaUseCases = new PlantasUseCase();
 
-        const resultado = await plantaUseCases.create(data);
-
-        return res.status(201).json(resultado);
+        try {
+            const resultado = await plantaUseCases.create(data);
+            return res.status(201).json(resultado);
+        } catch (error) {
+            return res.status(500).json({ error: "Ocorreu um erro durante a criação da planta." });
+        }
     }
+
 
     async update(req: Request, res: Response) {
 

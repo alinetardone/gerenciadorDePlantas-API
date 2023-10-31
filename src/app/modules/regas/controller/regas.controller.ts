@@ -4,19 +4,37 @@ import { RegasUseCase } from "../useCases/regasUseCases";
 export class RegasController {
 
     async create(req: Request, res: Response) {
-
         const { data } = req.body;
+        const errors = [];
 
         if (!data) {
-            throw new Error("Parâmetros inválidos.")
+            errors.push("O campo 'data' é obrigatório.");
+        } else {
+            if (data.regado === undefined) {
+                errors.push("O campo 'regado' é obrigatório.");
+            }
+            if (data.dataRegou === undefined) {
+                errors.push("O campo 'dataRegou' é obrigatório.");
+            }
+            if (data.quantidade === undefined) {
+                errors.push("O campo 'quantidade' é obrigatório.");
+            }
         }
 
-        const plantaUseCases = new RegasUseCase();
+        if (errors.length > 0) {
+            return res.status(400).json({ errors });
+        }
 
-        const resultado = await plantaUseCases.create(data);
+        const regasUseCases = new RegasUseCase();
 
-        return res.status(201).json(resultado);
+        try {
+            const resultado = await regasUseCases.create(data);
+            return res.status(201).json(resultado);
+        } catch (error) {
+            return res.status(500).json({ error: "Ocorreu um erro durante a criação das informações de rega." });
+        }
     }
+
 
     async update(req: Request, res: Response) {
 

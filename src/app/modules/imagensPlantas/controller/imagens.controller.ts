@@ -9,16 +9,18 @@ export class ImagensController {
         const imagem: Express.Multer.File | undefined = req.file;
 
         if (!imagem) {
-            throw new Error("Parâmetros inválidos.")
+            throw new Error("O campo 'imagem' é obrigatório.")
         }
 
         const imagemUseCases = new ImagensUseCase();
 
-        const logoBase64 = await imageToBase64(imagem);
-
-        const resultado = await imagemUseCases.create(logoBase64);
-
-        return res.status(201).json(resultado);
+        try {
+            const logoBase64 = await imageToBase64(imagem);
+            const resultado = await imagemUseCases.create(logoBase64);
+            return res.status(201).json(resultado);
+        } catch (error) {
+            return res.status(500).json({ error: "Ocorreu um erro durante a criação da imagem." });
+        }
     }
 
     async update(req: Request, res: Response) {
